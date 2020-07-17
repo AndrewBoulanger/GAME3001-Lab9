@@ -32,6 +32,10 @@ void PlayScene::update()
 	updateDisplayList();
 
 	CollisionManager::LOSCheck(m_pPlayer, m_pPlaneSprite, m_pObstacle);
+
+	CollisionManager::AABBCheck(m_pPlayer, m_pPlaneSprite);
+	CollisionManager::AABBCheck(m_pPlayer, m_pObstacle);
+	CollisionManager::AABBCheck(m_pPlaneSprite, m_pObstacle);
 }
 
 void PlayScene::clean()
@@ -149,7 +153,10 @@ void PlayScene::handleEvents()
 		{
 			m_bPatrolMode = !m_bPatrolMode;
 			m_bDebugKeys[P_KEY] = true;
-			std::cout << "p pressed\n";
+			if (m_bPatrolMode)
+				std::cout << "patrol mode on\n";
+			else
+				std::cout << "patrol mode off\n";
 		}
 	}
 	if (EventManager::Instance().isKeyUp(SDL_SCANCODE_P))
