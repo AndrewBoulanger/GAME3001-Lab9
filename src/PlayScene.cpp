@@ -15,7 +15,7 @@ void PlayScene::draw()
 {
 	drawDisplayList();
 
-	if(m_pDebugMode)
+	if(m_bDebugMode)
 		Util::DrawLine(m_pPlayer->getTransform()->position, m_pPlaneSprite->getTransform()->position);
 }
 
@@ -108,19 +108,45 @@ void PlayScene::handleEvents()
 		}
 	}
 	
-	if (m_pHpressed == false)
+	if (m_bDebugKeys[H_KEY] == false)
 	{
 		if (EventManager::Instance().isKeyDown(SDL_SCANCODE_H))
 		{
-			m_pDebugMode = !m_pDebugMode;
-			m_pHpressed = true;
+			m_bDebugMode = !m_bDebugMode;
+			m_bDebugKeys[H_KEY] = true;
 
 		}
 	}
-
 	if (EventManager::Instance().isKeyUp(SDL_SCANCODE_H))
 	{
-		m_pHpressed = false;
+		m_bDebugKeys[H_KEY] = false;
+	}
+
+	if (!m_bDebugKeys[K_KEY])
+	{
+		if (EventManager::Instance().isKeyDown(SDL_SCANCODE_K))
+		{
+			m_bDebugKeys[K_KEY] = true;
+			std::cout << "K pressed\n";
+		}
+	}
+	if (EventManager::Instance().isKeyUp(SDL_SCANCODE_K))
+	{
+		m_bDebugKeys[K_KEY] = false;
+	}
+
+	if (m_bDebugKeys[P_KEY] == false)
+	{
+		if (EventManager::Instance().isKeyDown(SDL_SCANCODE_P))
+		{
+			m_bPatrolMode = !m_bPatrolMode;
+			m_bDebugKeys[P_KEY] = true;
+			std::cout << "p pressed\n";
+		}
+	}
+	if (EventManager::Instance().isKeyUp(SDL_SCANCODE_P))
+	{
+		m_bDebugKeys[P_KEY] = false;
 	}
 
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_ESCAPE))

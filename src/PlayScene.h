@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Button.h"
 #include "Obstacle.h"
+#include "DebugKeys.h"
 
 class PlayScene : public Scene
 {
@@ -27,7 +28,11 @@ private:
 	Player* m_pPlayer;
 	bool m_playerFacingRight;
 
-	bool m_pDebugMode, m_pHpressed;
+	bool m_bDebugMode, m_bPatrolMode; 
+
+	bool m_bDebugKeys[NUM_OF_DEBUGKEYS];
+
+	bool m_bHpressed;
 
 	Obstacle* m_pObstacle;
 	
