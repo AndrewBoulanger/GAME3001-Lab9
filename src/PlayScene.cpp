@@ -15,7 +15,8 @@ void PlayScene::draw()
 {
 	drawDisplayList();
 
-	Util::DrawLine(m_pPlayer->getTransform()->position, m_pPlaneSprite->getTransform()->position);
+	if(m_pDebugMode)
+		Util::DrawLine(m_pPlayer->getTransform()->position, m_pPlaneSprite->getTransform()->position);
 }
 
 void PlayScene::update()
@@ -107,6 +108,20 @@ void PlayScene::handleEvents()
 		}
 	}
 	
+	if (m_pHpressed == false)
+	{
+		if (EventManager::Instance().isKeyDown(SDL_SCANCODE_H))
+		{
+			m_pDebugMode = !m_pDebugMode;
+			m_pHpressed = true;
+
+		}
+	}
+
+	if (EventManager::Instance().isKeyUp(SDL_SCANCODE_H))
+	{
+		m_pHpressed = false;
+	}
 
 	if (EventManager::Instance().isKeyDown(SDL_SCANCODE_ESCAPE))
 	{

@@ -27,6 +27,8 @@ private:
 	Player* m_pPlayer;
 	bool m_playerFacingRight;
 
+	bool m_pDebugMode, m_pHpressed;
+
 	Obstacle* m_pObstacle;
 	
 };
