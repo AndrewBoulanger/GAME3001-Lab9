@@ -15,8 +15,16 @@ void PlayScene::draw()
 {
 	drawDisplayList();
 
-	if(m_bDebugMode)
+	if (m_bDebugMode)
+	{
 		Util::DrawLine(m_pPlayer->getTransform()->position, m_pPlaneSprite->getTransform()->position);
+
+		//collision rects
+		Util::DrawRect(m_pPlayer->getTransform()->position - glm::vec2(m_pPlayer->getWidth() * 0.5, m_pPlayer->getHeight() * .5), m_pPlayer->getWidth(), m_pPlayer->getHeight());
+		Util::DrawRect(m_pPlaneSprite->getTransform()->position - glm::vec2(m_pPlaneSprite->getWidth() * 0.5, m_pPlaneSprite->getHeight() * .5), m_pPlaneSprite->getWidth(), m_pPlaneSprite->getHeight());
+		Util::DrawRect(m_pObstacle->getTransform()->position - glm::vec2(m_pObstacle->getWidth() * 0.5, m_pObstacle->getHeight() * .5), m_pObstacle->getWidth(), m_pObstacle->getHeight());
+
+	}
 }
 
 void PlayScene::update()
